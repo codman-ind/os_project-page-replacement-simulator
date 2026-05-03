@@ -140,32 +140,71 @@
                 </div>
             </section>
 
+            <!-- Memory Management Overview -->
+            <section class="bg-dark-panel/30 border border-dark-border/50 rounded-3xl p-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <div class="max-w-3xl">
+                    <h3 class="text-2xl font-bold text-white mb-4">What are we dealing with?</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        In modern computing, <strong>Virtual Memory</strong> allows a system to run programs larger than its physical RAM. The OS divides memory into fixed-size chunks called <strong>Pages</strong>. When a program needs a page not currently in RAM (a <strong>Page Fault</strong>), the OS must decide which existing page to swap out. This is where <strong>Page Replacement Algorithms</strong> come into play.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 shrink-0 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Page Fault</h4>
+                                <p class="text-xs text-slate-500 mt-1">Occurs when requested data isn't in RAM, requiring a slow disk fetch.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 shrink-0 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Page Hit</h4>
+                                <p class="text-xs text-slate-500 mt-1">Occurs when the CPU finds the page in RAM immediately. Fast and efficient.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Knowledge Base -->
             <section class="border-t border-dark-border pt-12">
                 <h3 class="text-xl font-bold text-white mb-6">Algorithm Fundamentals</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div class="bg-dark-bg border border-dark-border rounded-xl p-5">
-                        <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <div class="bg-dark-panel border border-dark-border rounded-xl p-6 hover:border-sky-500/30 transition-colors">
+                        <h4 class="text-sm font-bold text-sky-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-sky-500"></span> FIFO
                         </h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            First-In, First-Out replaces the oldest page in memory. It's simple but can suffer from Belady's Anomaly where more frames equal more faults.
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            <strong>First-In, First-Out:</strong> The simplest approach. The OS tracks when each page was brought into memory and replaces the oldest one first. While fair, it doesn't account for how often a page is used, leading to potential inefficiency.
                         </p>
                     </div>
-                    <div class="bg-dark-bg border border-dark-border rounded-xl p-5">
-                        <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <div class="bg-dark-panel border border-dark-border rounded-xl p-6 hover:border-violet-500/30 transition-colors">
+                        <h4 class="text-sm font-bold text-violet-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-violet-500"></span> LRU
                         </h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            Least Recently Used replaces the page that hasn't been accessed for the longest time. Excellent for workloads with high temporal locality.
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            <strong>Least Recently Used:</strong> An approximation of the Optimal algorithm. It replaces the page that has not been used for the longest time. It relies on the principle of <em>Temporal Locality</em>—if you used it recently, you'll likely use it again.
                         </p>
                     </div>
-                    <div class="bg-dark-bg border border-dark-border rounded-xl p-5">
-                        <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <div class="bg-dark-panel border border-dark-border rounded-xl p-6 hover:border-emerald-500/30 transition-colors">
+                        <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Optimal
                         </h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            Replaces the page that will not be used for the longest time in the future. It's theoretically perfect but impossible to implement in real OS systems.
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            <strong>Clairvoyant Strategy:</strong> Replaces the page that will not be used for the longest duration in the future. Since computers can't predict the future, this is a theoretical benchmark used to measure other algorithms' performance.
                         </p>
                     </div>
                 </div>

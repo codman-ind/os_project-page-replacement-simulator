@@ -139,6 +139,41 @@
                 </div>
             </section>
 
+            <!-- Simulator Quick Guide -->
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-dark-panel border border-dark-border rounded-2xl p-6">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-4 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        How to use the simulator
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-400 leading-relaxed">
+                        <p><strong>1. Reference String:</strong> Enter a comma-separated list of page numbers the CPU is requesting (e.g., 1, 2, 3, 1). This represents the memory access pattern.</p>
+                        <p><strong>2. Frames:</strong> Set the number of available physical RAM slots. Fewer frames typically lead to more page faults.</p>
+                        <p><strong>3. Execute:</strong> Click 'Execute' to see the algorithm run automatically, or use 'Step' to inspect every single replacement decision.</p>
+                        <p><strong>4. Insights:</strong> After running, click 'Core Insights' to see a detailed performance analysis of your specific input pattern.</p>
+                    </div>
+                </div>
+                <div class="bg-dark-panel border border-dark-border rounded-2xl p-6">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-4">Visualization Key</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded bg-red-500/20 border border-red-500/50"></div>
+                            <span class="text-xs text-slate-400"><strong>Page Fault:</strong> Page not found in RAM. Must be replaced.</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded bg-emerald-500/20 border border-emerald-500/50"></div>
+                            <span class="text-xs text-slate-400"><strong>Page Hit:</strong> Page already in RAM. No replacement needed.</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded bg-brand-500/10 border border-brand-500/30"></div>
+                            <span class="text-xs text-slate-400"><strong>Pointer/Victim:</strong> Highlights the page being considered for replacement.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Dynamic Simulation Area -->
             <div id="simulationsContainer" class="space-y-10"></div>
 

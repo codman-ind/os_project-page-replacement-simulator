@@ -142,6 +142,34 @@
                 </div>
             </section>
 
+            <!-- Pattern Definitions -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                <div class="bg-dark-panel border border-dark-border rounded-2xl p-6">
+                    <h3 class="text-sm font-bold text-sky-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span> Random Pattern
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Simulates a system with no predictable memory access. This is the ultimate test for algorithm robustness, as neither FIFO nor LRU can rely on history to predict the future. 
+                    </p>
+                </div>
+                <div class="bg-dark-panel border border-dark-border rounded-2xl p-6">
+                    <h3 class="text-sm font-bold text-violet-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-violet-500"></span> Locality Pattern
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Mimics real-world software behavior where a program repeatedly accesses a small set of pages (like a loop). LRU typically excels here by keeping the "hot" pages in memory.
+                    </p>
+                </div>
+                <div class="bg-dark-panel border border-dark-border rounded-2xl p-6">
+                    <h3 class="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Sequential Pattern
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Accesses pages in a strict 1-2-3-4 order. This pattern is the "worst-case" for LRU and FIFO when the sequence is larger than the number of frames, causing a fault on every single access.
+                    </p>
+                </div>
+            </section>
+
         </main>
     </div>
 
