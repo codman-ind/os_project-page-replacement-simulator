@@ -31,6 +31,11 @@ app.use('/insights', require('./routes/insights'));
 // Stress Test route
 app.use('/stress-test', require('./routes/stressTest'));
 
+// About route
+app.get('/about', (req, res) => {
+    res.render('about', { title: 'About | OS Memory Simulator', activePage: 'about' });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

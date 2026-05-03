@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#f0fdfa', 100: '#ccfbf1', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 900: '#134e4a' },
+                        dark: { bg: '#0f172a', panel: '#1e293b', border: '#334155' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-dark-bg text-slate-200 min-h-screen font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <%- include('partials/sidebar') %>
+
+    <div class="md:pl-64 flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="border-b border-dark-border bg-dark-panel/40 backdrop-blur-xl sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-white">About Project</h1>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Documentation & Intelligence</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+            
+            <!-- Hero Section -->
+            <section class="text-center space-y-6">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                    Bridging the Gap Between <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-500">Hardware and Intuition</span>
+                </h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Memory Intelligence is a high-fidelity simulator designed to demystify one of the most critical components of modern operating systems: **Page Replacement Algorithms**.
+                </p>
+            </section>
+
+            <!-- Mission Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-panel rounded-3xl p-8 border border-dark-border/50">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400 text-sm">01</span>
+                        The Challenge
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Operating systems must decide which memory pages to keep and which to evict when physical RAM is full. This decision impacts system performance, latency, and throughput. Understanding these trade-offs is essential for systems engineering.
+                    </p>
+                </div>
+                <div class="glass-panel rounded-3xl p-8 border border-dark-border/50">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 text-sm">02</span>
+                        Our Solution
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        We provide a visually rich, data-driven environment where students and engineers can experiment with different workloads, analyze real-time decision logic, and stress-test algorithms across thousands of cycles.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Algorithm Intelligence Grid -->
+            <section class="space-y-8">
+                <div class="flex items-center gap-4">
+                    <h3 class="text-2xl font-bold text-white">Algorithm Breakdown</h3>
+                    <div class="h-px flex-1 bg-gradient-to-r from-dark-border/50 to-transparent"></div>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- FIFO -->
+                    <div class="premium-card glass-panel rounded-3xl p-8 border border-dark-border/50 group">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="w-full md:w-1/3">
+                                <h4 class="text-lg font-extrabold text-brand-400 mb-2 uppercase tracking-wider">FIFO</h4>
+                                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 italic">First-In, First-Out</p>
+                                <div class="inline-flex items-center px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-bold">
+                                    Suffers from Belady's Anomaly
+                                </div>
+                            </div>
+                            <div class="flex-1 space-y-4 text-sm text-slate-300 leading-relaxed">
+                                <p>
+                                    The simplest page-replacement algorithm. The operating system keeps track of all pages in a queue, with the oldest page at the front. When a page needs to be replaced, the page at the front is chosen.
+                                </p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-dark-bg/40 p-3 rounded-xl border border-dark-border/30">
+                                        <p class="font-bold text-emerald-400 text-xs mb-1">PROS</p>
+                                        <p class="text-[11px] text-slate-500">Low overhead, easy to implement with a simple queue.</p>
+                                    </div>
+                                    <div class="bg-dark-bg/40 p-3 rounded-xl border border-dark-border/30">
+                                        <p class="font-bold text-red-400 text-xs mb-1">CONS</p>
+                                        <p class="text-[11px] text-slate-500">Poor performance for many workloads; doesn't consider usage frequency.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LRU -->
+                    <div class="premium-card glass-panel rounded-3xl p-8 border border-dark-border/50 group">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="w-full md:w-1/3">
+                                <h4 class="text-lg font-extrabold text-blue-400 mb-2 uppercase tracking-wider">LRU</h4>
+                                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 italic">Least Recently Used</p>
+                                <div class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold">
+                                    High Locality Efficiency
+                                </div>
+                            </div>
+                            <div class="flex-1 space-y-4 text-sm text-slate-300 leading-relaxed">
+                                <p>
+                                    LRU replaces the page that has not been used for the longest period of time. It is based on the principle of temporal locality: if a page was recently accessed, it is likely to be accessed again soon.
+                                </p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-dark-bg/40 p-3 rounded-xl border border-dark-border/30">
+                                        <p class="font-bold text-emerald-400 text-xs mb-1">PROS</p>
+                                        <p class="text-[11px] text-slate-500">Excellent for most applications; adaptive to changing access patterns.</p>
+                                    </div>
+                                    <div class="bg-dark-bg/40 p-3 rounded-xl border border-dark-border/30">
+                                        <p class="font-bold text-red-400 text-xs mb-1">CONS</p>
+                                        <p class="text-[11px] text-slate-500">Higher overhead; requires specialized hardware support for efficiency.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Optimal -->
+                    <div class="premium-card glass-panel rounded-3xl p-8 border border-dark-border/50 group">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="w-full md:w-1/3">
+                                <h4 class="text-lg font-extrabold text-violet-400 mb-2 uppercase tracking-wider">Optimal</h4>
+                                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 italic">MIN Algorithm</p>
+                                <div class="inline-flex items-center px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-[10px] font-bold">
+                                    Theoretical Benchmark
+                                </div>
+                            </div>
+                            <div class="flex-1 space-y-4 text-sm text-slate-300 leading-relaxed">
+                                <p>
+                                    The Optimal algorithm replaces the page that will not be used for the longest duration in the future. While mathematically perfect, it requires "clairvoyance"—knowledge of future memory accesses.
+                                </p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-dark-bg/40 p-3 rounded-xl border border-dark-border/30">
+                                        <p class="font-bold text-emerald-400 text-xs mb-1">PROS</p>
+                                        <p class="text-[11px] text-slate-500">Guarantees the lowest possible page fault rate.</p>
+                                    </div>
+                                    <div class="bg-dark-bg/40 p-3 rounded-xl border border-dark-border/30">
+                                        <p class="font-bold text-red-400 text-xs mb-1">CONS</p>
+                                        <p class="text-[11px] text-slate-500">Physically impossible to implement in a real-time OS.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technology Stack -->
+            <section class="space-y-8">
+                <div class="flex items-center gap-4">
+                    <h3 class="text-2xl font-bold text-white">Architectural Foundation</h3>
+                    <div class="h-px flex-1 bg-gradient-to-r from-dark-border/50 to-transparent"></div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-dark-panel/40 border border-dark-border/50 rounded-2xl p-6 text-center group hover:border-brand-500/30 transition-all">
+                        <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
+                        <p class="text-xs font-bold text-white uppercase tracking-widest">Node.js</p>
+                        <p class="text-[10px] text-slate-500 mt-1">Runtime Engine</p>
+                    </div>
+                    <div class="bg-dark-panel/40 border border-dark-border/50 rounded-2xl p-6 text-center group hover:border-brand-500/30 transition-all">
+                        <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">📡</div>
+                        <p class="text-xs font-bold text-white uppercase tracking-widest">Express</p>
+                        <p class="text-[10px] text-slate-500 mt-1">Web Framework</p>
+                    </div>
+                    <div class="bg-dark-panel/40 border border-dark-border/50 rounded-2xl p-6 text-center group hover:border-brand-500/30 transition-all">
+                        <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">🎨</div>
+                        <p class="text-xs font-bold text-white uppercase tracking-widest">Tailwind</p>
+                        <p class="text-[10px] text-slate-500 mt-1">Design System</p>
+                    </div>
+                    <div class="bg-dark-panel/40 border border-dark-border/50 rounded-2xl p-6 text-center group hover:border-brand-500/30 transition-all">
+                        <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">📊</div>
+                        <p class="text-xs font-bold text-white uppercase tracking-widest">Chart.js</p>
+                        <p class="text-[10px] text-slate-500 mt-1">Visualization</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="pt-12 border-t border-dark-border/50 text-center">
+                <p class="text-sm text-slate-500">
+                    Built for the future of <span class="text-brand-400 font-bold">Systems Education</span>.
+                </p>
+                <div class="mt-6 flex justify-center gap-6">
+                    <a href="https://github.com/codman-ind" class="text-slate-500 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">GitHub Repository</a>
+                    <a href="/simulator" class="text-slate-500 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">Launch App</a>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+</html>
