@@ -23,6 +23,9 @@ app.get('/', (req, res) => {
 // Insights route
 app.use('/insights', require('./routes/insights'));
 
+// Stress Test route
+app.use('/stress-test', require('./routes/stressTest'));
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
