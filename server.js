@@ -15,9 +15,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Main route
+// Dashboard (Landing Page)
 app.get('/', (req, res) => {
-    res.render('index', { title: 'OS Page Replacement Simulator', activePage: 'simulator' });
+    res.render('dashboard', { title: 'Dashboard | OS Memory Simulator', activePage: 'dashboard' });
+});
+
+// Simulator route
+app.get('/simulator', (req, res) => {
+    res.render('simulator', { title: 'OS Page Replacement Simulator', activePage: 'simulator' });
 });
 
 // Insights route
