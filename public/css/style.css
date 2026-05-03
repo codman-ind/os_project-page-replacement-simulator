@@ -1,80 +1,120 @@
-/* Custom Scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-    height: 8px;
-    width: 8px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.5); /* dark-bg */
-    border-radius: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(51, 65, 85, 0.8); /* dark-border */
-    border-radius: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(71, 85, 105, 1);
+/* --- Advanced UI Foundations --- */
+:root {
+    --brand-primary: #14b8a6;
+    --brand-secondary: #0ea5e9;
+    --brand-accent: #8b5cf6;
+    --dark-bg: #0f172a;
+    --dark-panel: #1e293b;
+    --dark-border: #334155;
 }
 
-/* Cell Styles */
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.3);
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(51, 65, 85, 0.6);
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--brand-primary);
+}
+
+/* --- Glassmorphism & Cards --- */
+.glass-panel {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.premium-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.premium-card:hover {
+    border-color: rgba(20, 184, 166, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Grid & Cell Styles --- */
 .grid-cell {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 500;
-    font-size: 0.875rem;
-    border-right: 1px solid rgba(51, 65, 85, 0.5);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-right: 1px solid rgba(51, 65, 85, 0.3);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
-    color: #e2e8f0; /* text-slate-200 */
+    color: #f1f5f9;
 }
 
-/* Animation Classes */
-.cell-enter {
-    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+.cell-active {
+    background: rgba(20, 184, 166, 0.05);
 }
 
-@keyframes popIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+/* --- Algorithm Indicators --- */
+/* FIFO Pointer */
+.fifo-pointer {
+    position: absolute;
+    left: -4px;
+    width: 4px;
+    height: 24px;
+    background: var(--brand-primary);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 10px var(--brand-primary);
+    transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* LRU Aging (Heat Map) */
+.age-new { opacity: 1; filter: drop-shadow(0 0 2px var(--brand-primary)); }
+.age-mid { opacity: 0.7; }
+.age-old { opacity: 0.4; filter: grayscale(0.5); }
+
+/* --- Status Highlights --- */
 .highlight-hit {
-    background-color: rgba(16, 185, 129, 0.2) !important; /* emerald-500/20 */
-    color: #34d399 !important; /* emerald-400 */
-    box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.5);
+    background: rgba(16, 185, 129, 0.15) !important;
+    color: #34d399 !important;
+    box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.4);
 }
 
 .highlight-fault {
-    background-color: rgba(239, 68, 68, 0.2) !important; /* red-500/20 */
-    color: #f87171 !important; /* red-400 */
-    box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.5);
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+    box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.4);
 }
 
-.active-col {
-    background-color: rgba(255, 255, 255, 0.03);
-}
-.active-col::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    pointer-events: none;
-    z-index: 10;
+/* --- Animations --- */
+.animate-pop-in {
+    animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* Show classes for JS toggle */
-.show-sim {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.6) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
 }
+
+.animate-slide-up {
+    animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Log Panel --- */
+.log-entry {
+    border-left: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+.log-entry-hit { border-left-color: #10b981; background: rgba(16, 185, 129, 0.05); }
+.log-entry-fault { border-left-color: #ef4444; background: rgba(239, 68, 68, 0.05); }
