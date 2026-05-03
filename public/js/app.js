@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const stepBtn = document.getElementById('stepBtn');
     const resetBtn = document.getElementById('resetBtn');
     const exportCsvBtn = document.getElementById('exportCsvBtn');
+    const analyzeInsightsBtn = document.getElementById('analyzeInsightsBtn');
     
     const simulationsContainer = document.getElementById('simulationsContainer');
     const chartSection = document.getElementById('chartSection');
@@ -439,6 +440,15 @@ document.addEventListener('DOMContentLoaded', () => {
         link.click();
         document.body.removeChild(link);
     });
+
+    // --- Insights Redirect ---
+    if (analyzeInsightsBtn) {
+        analyzeInsightsBtn.addEventListener('click', () => {
+            const ref = refStringInput.value;
+            const frames = framesInput.value;
+            window.location.href = `/insights?ref=${encodeURIComponent(ref)}&frames=${encodeURIComponent(frames)}`;
+        });
+    }
 
     // Initialize labels
     speedValue.textContent = updateSpeedLabel(speedSlider.value);

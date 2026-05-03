@@ -17,8 +17,11 @@ app.use(express.json());
 
 // Main route
 app.get('/', (req, res) => {
-    res.render('index', { title: 'OS Page Replacement Simulator' });
+    res.render('index', { title: 'OS Page Replacement Simulator', activePage: 'simulator' });
 });
+
+// Insights route
+app.use('/insights', require('./routes/insights'));
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

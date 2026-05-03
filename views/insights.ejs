@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#f0fdfa', 100: '#ccfbf1', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 900: '#134e4a' },
+                        dark: { bg: '#0f172a', panel: '#1e293b', border: '#334155' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-dark-bg text-slate-200 min-h-screen font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <%- include('partials/sidebar') %>
+
+    <div class="md:pl-64 flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="border-b border-dark-border bg-dark-panel/50 backdrop-blur-md sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">Analysis & Insights</h1>
+                    <p class="text-xs text-slate-400 font-medium">Data-driven algorithm metrics</p>
+                </div>
+                <a href="/" class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white bg-dark-border/50 hover:bg-dark-border rounded-lg transition-colors border border-transparent hover:border-slate-600 flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    <span>Back to Simulator</span>
+                </a>
+            </div>
+        </header>
+
+        <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+            
+            <!-- Input Info Banner -->
+            <div class="bg-brand-500/10 border border-brand-500/20 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <p class="text-sm font-medium text-brand-400">Current Reference String</p>
+                    <p class="text-lg font-mono text-white mt-1 break-all"><%= inputs.refString %></p>
+                </div>
+                <div class="sm:text-right shrink-0">
+                    <p class="text-sm font-medium text-brand-400">Frame Size</p>
+                    <p class="text-2xl font-bold text-white"><%= inputs.frames %></p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Pattern Analyzer Card -->
+                <div class="bg-dark-panel border border-dark-border rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2 bg-blue-500/10 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                        <h2 class="text-lg font-semibold text-white">Pattern Analyzer</h2>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-2xl font-bold text-slate-200"><%= patternAnalysis.type %></p>
+                        <p class="text-sm text-slate-400 leading-relaxed"><%= patternAnalysis.description %></p>
+                    </div>
+                </div>
+
+                <!-- Recommendation Card -->
+                <div class="bg-dark-panel border border-dark-border rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2 bg-emerald-500/10 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                            </svg>
+                        </div>
+                        <h2 class="text-lg font-semibold text-white">Recommended</h2>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-xl font-bold text-emerald-400"><%= recommendation.algo %></p>
+                        <p class="text-sm text-slate-400 leading-relaxed"><%= recommendation.reason %></p>
+                    </div>
+                </div>
+
+                <!-- Performance Summary Card -->
+                <div class="bg-dark-panel border border-dark-border rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2 bg-amber-500/10 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h2 class="text-lg font-semibold text-white">Fault Summary</h2>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">FIFO Faults</p>
+                            <p class="text-xl font-bold text-slate-300"><%= summary.fifo %></p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">LRU Faults</p>
+                            <p class="text-xl font-bold text-slate-300"><%= summary.lru %></p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Optimal Faults</p>
+                            <p class="text-xl font-bold text-emerald-400"><%= summary.opt %></p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">LRU Improvement</p>
+                            <p class="text-xl font-bold text-brand-400"><%= summary.improvement %>%</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Cumulative Faults Chart -->
+                <div class="bg-dark-panel border border-dark-border rounded-2xl p-6 shadow-lg">
+                    <h2 class="text-lg font-semibold text-white mb-4">Cumulative Page Faults Timeline</h2>
+                    <div class="h-[300px] w-full">
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Belady's Anomaly Test -->
+                <div class="bg-dark-panel border border-dark-border rounded-2xl p-6 shadow-lg relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-semibold text-white">Belady's Anomaly Detection (FIFO)</h2>
+                        <% if (anomalyData.detected) { %>
+                            <span class="bg-red-500/20 text-red-400 text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wide">Detected</span>
+                        <% } else { %>
+                            <span class="bg-slate-500/20 text-slate-400 text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wide">Clear</span>
+                        <% } %>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-6"><%= anomalyData.details %></p>
+                    <div class="h-[250px] w-full">
+                        <canvas id="anomalyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Set Chart.js Defaults
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.font.family = "'Outfit', sans-serif";
+
+        // 1. Timeline Chart
+        const timelineCtx = document.getElementById('timelineChart').getContext('2d');
+        new Chart(timelineCtx, {
+            type: 'line',
+            data: {
+                labels: <%- charts.labels %>,
+                datasets: [
+                    {
+                        label: 'FIFO',
+                        data: <%- charts.fifo %>,
+                        borderColor: '#0ea5e9', // sky-500
+                        backgroundColor: '#0ea5e9',
+                        tension: 0.3,
+                        borderWidth: 2,
+                        pointRadius: 2
+                    },
+                    {
+                        label: 'LRU',
+                        data: <%- charts.lru %>,
+                        borderColor: '#8b5cf6', // violet-500
+                        backgroundColor: '#8b5cf6',
+                        tension: 0.3,
+                        borderWidth: 2,
+                        pointRadius: 2
+                    },
+                    {
+                        label: 'Optimal',
+                        data: <%- charts.opt %>,
+                        borderColor: '#10b981', // emerald-500
+                        backgroundColor: '#10b981',
+                        borderDash: [5, 5],
+                        tension: 0.3,
+                        borderWidth: 2,
+                        pointRadius: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(51, 65, 85, 0.3)' },
+                        title: { display: true, text: 'Total Faults' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { maxTicksLimit: 10 }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'top' }
+                }
+            }
+        });
+
+        // 2. Belady's Anomaly Chart
+        const anomalyCtx = document.getElementById('anomalyChart').getContext('2d');
+        new Chart(anomalyCtx, {
+            type: 'line',
+            data: {
+                labels: <%- charts.anomalyLabels %>,
+                datasets: [{
+                    label: 'FIFO Faults vs Frame Size',
+                    data: <%- charts.anomalyFaults %>,
+                    borderColor: '<%- anomalyData.detected ? "#ef4444" : "#f59e0b" %>', // red-500 or amber-500
+                    backgroundColor: '<%- anomalyData.detected ? "rgba(239, 68, 68, 0.1)" : "rgba(245, 158, 11, 0.1)" %>',
+                    fill: true,
+                    tension: 0.1,
+                    borderWidth: 3,
+                    pointBackgroundColor: '#1e293b',
+                    pointBorderColor: '<%- anomalyData.detected ? "#ef4444" : "#f59e0b" %>',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        grid: { color: 'rgba(51, 65, 85, 0.3)' },
+                        title: { display: true, text: 'Page Faults' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        title: { display: true, text: 'Number of Frames' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
